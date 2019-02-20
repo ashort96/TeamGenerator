@@ -5,7 +5,7 @@
 
 namespace {
 	const std::string PROJECT_NAME = "team_generator";
-	const bool DEBUG = false;
+	constexpr bool DEBUG = false;
 }
 
 struct Team {
