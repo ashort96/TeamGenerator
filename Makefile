@@ -3,6 +3,7 @@ CFLAGS=-std=c++11
 OUT=team_generator
 SOURCE=$(OUT).cpp
 FILE=names.txt
+SIZE=5
 
 all: $(OUT)
 
@@ -13,5 +14,5 @@ clean:
 	rm -f $(OUT)
 
 test: $(OUT)
-	./$(OUT) $(FILE)
+	./$(OUT) $(FILE) $(SIZE)
 
