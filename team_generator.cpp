@@ -4,8 +4,7 @@
 #include <vector>
 
 namespace {
-	const std::string PROJECT_NAME = "name_selector";
-	const unsigned int TEAM_SIZE = 5;
+	const std::string PROJECT_NAME = "team_generator";
 	const bool DEBUG = false;
 }
 
@@ -15,7 +14,7 @@ struct Team {
 };
 
 
-void assignTeams(std::vector<std::string> players);;
+void assignTeams(std::vector<std::string> players, unsigned int teamSize);
 int getRandom(int min, int max);
 
 int main(int argc, char **argv) {
@@ -25,8 +24,8 @@ int main(int argc, char **argv) {
 	Team *teams;
 
 	//Check that a file was provided
-	if(argc != 2) {
-		fprintf(stderr, "Usage:\n./%s [file]\n", PROJECT_NAME.c_str());
+	if(argc != 3) {
+		fprintf(stderr, "Usage:\n./%s [file] [team size]\n", PROJECT_NAME.c_str());
 		return -1;
 	}
 
@@ -35,6 +34,7 @@ int main(int argc, char **argv) {
 
 	//Get the file name, make sure we can open it
 	std::string filename = argv[1];
+	unsigned int teamSize = atoi(argv[2]);
 	std::ifstream file;
 	file.open(filename);
 
@@ -51,15 +51,15 @@ int main(int argc, char **argv) {
 	file.close();
 	
 	//Assign the teams
-	assignTeams(players);
+	assignTeams(players, teamSize);
 
 }
 
 //Assign all players
-void assignTeams(std::vector<std::string> players) {
+void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
 
-	unsigned int numTeams = players.size() / TEAM_SIZE;
-	unsigned int peopleLeftOver = players.size() % TEAM_SIZE;
+	unsigned int numTeams = players.size() / teamSize;
+	unsigned int peopleLeftOver = players.size() % teamSize;
 	unsigned int teamNumber = 0;
 
 	if(DEBUG) {
@@ -81,7 +81,7 @@ void assignTeams(std::vector<std::string> players) {
 		//Keep getting a random number until the team isn't full
 		while(true) {
 			teamNumber = getRandom(0, numTeams);
-			if(teams[teamNumber].currentMembers < TEAM_SIZE) {
+			if(teams[teamNumber].currentMembers < teamSize) {
 				Team *team = &teams[teamNumber];
 				team->members[team->currentMembers] = *it;
 				team->currentMembers++;
