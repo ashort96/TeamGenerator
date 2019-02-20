@@ -12,6 +12,6 @@ $(OUT): $(SOURCE)
 clean:
 	rm -f $(OUT)
 
-run: $(OUT)
+test: $(OUT)
 	./$(OUT) $(FILE)
 
