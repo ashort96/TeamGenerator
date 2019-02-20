@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace {
-	const std::string PROJECT_NAME = "team_generator";
+	const std::string FILE_NAME = "team_generator";
 	constexpr bool DEBUG = false;
 }
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 
 	//Check that a file was provided
 	if(argc != 3) {
-		fprintf(stderr, "Usage:\n./%s [file] [team size]\n", PROJECT_NAME.c_str());
+		fprintf(stderr, "Usage:\n./%s [file] [team size]\n", FILE_NAME.c_str());
 		return -1;
 	}
 
