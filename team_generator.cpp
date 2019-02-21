@@ -95,7 +95,7 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
 
 	for(unsigned int i = 0; i < numTeams; i++) {
 		Team *team = &teams[i];
-		printf("Team %d\n", i);
+		printf("Team %d\n", i+1);
 		for(unsigned int j = 0; j < team->currentMembers; j++) {
 			printf("	Member: %s\n", team->members[j].c_str());
 		}
