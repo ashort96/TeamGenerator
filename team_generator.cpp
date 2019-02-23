@@ -13,46 +13,11 @@ struct Team {
 };
 
 
-void assignTeams(std::vector<std::string> players, unsigned int teamSize);
-int getRandom(int min, int max);
-
-int main(int argc, char **argv) {
-
-	std::string name;
-	std::vector<std::string> players;
-	Team *teams;
-
-	//Check that a file was provided
-	if(argc != 3) {
-		fprintf(stderr, "Usage:\n%s [file] [team size]\n", argv[0]);
-		return -1;
-	}
-
-	//Seed the random number
-	srand(static_cast<unsigned int>(time(nullptr)));
-
-	//Get the file name, make sure we can open it
-	std::string filename = argv[1];
-	unsigned int teamSize = atoi(argv[2]);
-	std::ifstream file;
-	file.open(filename);
-
-	if(!file) {
-		fprintf(stderr, "Unable to open %s\n", filename.c_str());
-		return -1;
-	}
-
-	while(getline(file, name)) {
-		players.push_back(name);
-	}
-
-	//Close the file, we're done with it
-	file.close();
-	
-	//Assign the teams
-	assignTeams(players, teamSize);
-
+//Return a random number from range min to max
+int getRandom(int min, int max) {
+	return min+rand()%(max - min + 1);
 }
+
 
 //Assign all players
 void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
@@ -104,8 +69,43 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
 }
 
 
-//Return a random number from range min to max
-int getRandom(int min, int max) {
-	return min+rand()%(max - min + 1);
+int main(int argc, char **argv) {
+
+	std::string name;
+	std::vector<std::string> players;
+	Team *teams;
+
+	//Check that a file was provided
+	if(argc != 3) {
+		fprintf(stderr, "Usage:\n%s [file] [team size]\n", argv[0]);
+		return -1;
+	}
+
+	//Seed the random number
+	srand(static_cast<unsigned int>(time(nullptr)));
+
+	//Get the file name, make sure we can open it
+	std::string filename = argv[1];
+	unsigned int teamSize = atoi(argv[2]);
+	std::ifstream file;
+	file.open(filename);
+
+	if(!file) {
+		fprintf(stderr, "Unable to open %s\n", filename.c_str());
+		return -1;
+	}
+
+	while(getline(file, name)) {
+		players.push_back(name);
+	}
+
+	//Close the file, we're done with it
+	file.close();
+	
+	//Assign the teams
+	assignTeams(players, teamSize);
+
 }
+
+
 
