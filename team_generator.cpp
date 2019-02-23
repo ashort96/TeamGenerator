@@ -3,25 +3,25 @@
 #include <string>
 #include <vector>
 
-namespace {
-	constexpr bool DEBUG = false;
-}
+#define DEBUG false
 
-struct Team {
+struct Team
+{
 	std::vector<std::string> members;
 	int currentMembers = 0;
 };
 
 
 //Return a random number from range min to max
-int getRandom(int min, int max) {
+int getRandom(int min, int max)
+{
 	return min+rand()%(max - min + 1);
 }
 
 
 //Assign all players
-void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
-
+void assignTeams(std::vector<std::string> players, unsigned int teamSize)
+{
 	unsigned int numTeams = players.size() / teamSize;
 	unsigned int peopleLeftOver = players.size() % teamSize;
 	unsigned int teamNumber = 0;
@@ -58,6 +58,7 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
 		
 	}
 
+	//Print off the teams
 	for(unsigned int i = 0; i < numTeams; i++) {
 		Team *team = &teams[i];
 		printf("Team %d\n", i+1);
@@ -69,8 +70,8 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
 }
 
 
-int main(int argc, char **argv) {
-
+int main(int argc, char **argv)
+{
 	std::string name;
 	std::vector<std::string> players;
 	Team *teams;
@@ -105,7 +106,5 @@ int main(int argc, char **argv) {
 	//Assign the teams
 	assignTeams(players, teamSize);
 
+	return 0;
 }
-
-
-
