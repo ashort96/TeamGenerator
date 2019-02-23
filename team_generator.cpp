@@ -8,7 +8,7 @@ namespace {
 }
 
 struct Team {
-	std::string members[5];
+	std::vector<std::string> members;
 	int currentMembers = 0;
 };
 
@@ -82,7 +82,7 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize) {
 			teamNumber = getRandom(0, numTeams);
 			if(teams[teamNumber].currentMembers < teamSize) {
 				Team *team = &teams[teamNumber];
-				team->members[team->currentMembers] = *it;
+				team->members.push_back(*it);
 				team->currentMembers++;
 				break;
 			}
