@@ -14,7 +14,7 @@ struct Team
 //Return a random number from range min to max
 int getRandom(int min, int max)
 {
-	return min+rand()%(max - min + 1);
+	return min + rand() % (max - min + 1);
 }
 
 
