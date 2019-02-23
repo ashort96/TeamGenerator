@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 
-#define DEBUG false
 
 struct Team
 {
@@ -26,36 +25,25 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize)
 	unsigned int peopleLeftOver = players.size() % teamSize;
 	unsigned int teamNumber = 0;
 
-	if(DEBUG) {
-		printf("Number of teams = %d - Left over = %d\n", numTeams, peopleLeftOver);
-	}
-
 	if(peopleLeftOver) {
 		numTeams++;
-		if(DEBUG) {
-			printf("Incrementing numbers of teams to %d\n", numTeams);
-		}
 	}
 
 	Team teams[numTeams];
 	std::vector<std::string>::iterator it;
 
 	for(it = players.begin(); it != players.end(); it++) {
-
 		//Keep getting a random number until the team isn't full
 		while(true) {
 			teamNumber = getRandom(0, numTeams);
+
 			if(teams[teamNumber].currentMembers < teamSize) {
 				Team *team = &teams[teamNumber];
 				team->members.push_back(*it);
 				team->currentMembers++;
 				break;
 			}
-			if(DEBUG) {
-				printf("Picking another random number...\n");
-			}
 		}
-		
 	}
 
 	//Print off the teams
@@ -65,7 +53,6 @@ void assignTeams(std::vector<std::string> players, unsigned int teamSize)
 		for(unsigned int j = 0; j < team->currentMembers; j++) {
 			printf("	Member: %s\n", team->members[j].c_str());
 		}
-
 	}
 }
 
